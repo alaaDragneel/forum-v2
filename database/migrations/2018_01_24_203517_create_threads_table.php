@@ -14,6 +14,7 @@ class CreateThreadsTable extends Migration
      */
     public function up ()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('threads', function (Blueprint $table)
         {
             $table->increments('id');
@@ -32,6 +33,7 @@ class CreateThreadsTable extends Migration
                 ->on('replies')
                 ->onDelete('set null');
         });
+        Schema::enableForeignKeyConstraints();
     }
 
     /**
