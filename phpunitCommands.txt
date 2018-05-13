@@ -1,2 +1,0 @@
-vendor/phpunit/phpunit/phpunit --testsuite Feature Tests
-vendor/phpunit/phpunit/phpunit --testsuite Unit Tests
