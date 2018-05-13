@@ -43,7 +43,9 @@
                             {{-- Body Section::End--}}
 
                             {{-- reCAPTCHA Section::Start--}}
-                            <div class="g-recaptcha" data-sitekey="6Lf6_E8UAAAAAETubBZcI7el9R5RuaGl5pm-3xZe"></div>
+                            <div class="form-group">
+                                <div class="g-recaptcha" data-sitekey="{{ config('forum-v2.recaptcha.key') }}"></div>
+                            </div>
                             {{-- reCAPTCHA Section::End--}}
 
                             <div class="form-group">
