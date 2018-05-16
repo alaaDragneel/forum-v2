@@ -3,7 +3,10 @@
         <div class="level">
             <img :src="avatar" :alt="user.name" :title="user.name" class="mr-1" width="50" height="50">
             <h1> {{ user.name }}
-                <small> Since {{ ago }} </small>
+                <small> 
+                    ({{ user.reputation }} XP)
+                    Since {{ ago }} 
+                </small>
             </h1>
 
         </div>

@@ -33,11 +33,16 @@ class Thread extends Model
                     $reply->delete();
                 });
              */
+
+            Reputation::revoking($thread->owner, Reputation::THREAD_WAS_PUBLISHED);
         });
 
         static::created(function ($thread)
         {
             $thread->update([ 'slug' => $thread->title ]);
+            
+            Reputation::award($thread->owner, Reputation::THREAD_WAS_PUBLISHED);
+
         });
     }
 
@@ -146,6 +151,8 @@ class Thread extends Model
     public function markBestReply (Reply $reply)
     {
         $this->update([ 'best_reply_id' => $reply->id ]);
+
+        Reputation::award($reply->owner, Reputation::BEST_REPLY_AWARDED);
     }
 
     public function getBodyAttribute ($body)

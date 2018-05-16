@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('name')->unique();
             $table->string('email')->unique();
             $table->string('password');
+            $table->unsignedBigInteger('reputation')->default(0);
             $table->string('avatar_path')->nullable();
             $table->enum('type', [ 'admin', 'user' ])->default('user');
             $table->boolean('confirmed')->default(false);

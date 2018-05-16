@@ -33,7 +33,7 @@
             <span class="flex">
                 <img src="{{ $thread->owner->avatar_path }}" class="mr-1" alt="{{ $thread->owner->name }}" title="{{ $thread->owner->name }}" width="25" height="25">
                 <a href="{{ route('profiles.show', ['profileUser' => $thread->owner]) }}">
-                    {{ $thread->owner->name }}
+                    {{ $thread->owner->name }} ({{ $thread->owner->reputation }} XP)
                 </a>
                 Posted:
                 <span v-text="title"></span>
