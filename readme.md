@@ -31,6 +31,11 @@ DB_DATABASE=forum-v2
 DB_USERNAME=root
 DB_PASSWORD=
 ```
+Then, run the migration
+
+```
+php artisan migrate
+```
 
 ### Step 3.
 Create any number of channels, Then clean your cache.
@@ -38,3 +43,6 @@ Create any number of channels, Then clean your cache.
 ```bash
 php artisan cache:clear
 ```
+
+### Step 4.
+Use your forum! Visit http://forum-v2.test/threads to create new account and publish your first thread :).
