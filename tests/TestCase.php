@@ -38,6 +38,17 @@ abstract class TestCase extends BaseTestCase
         return $this;
     }
 
+    protected function signInAsAdmin($admin = null)
+    {
+        $admin = $admin ?: create('App\User');
+
+        config(['forum-v2.administrators' => [$admin->email]]);
+
+        $this->actingAs($admin);
+
+        return $this;
+    }
+
     // Hat tip, @adamwathan.
     protected function disableExceptionHandling ()
     {

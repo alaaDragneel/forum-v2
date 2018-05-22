@@ -23,7 +23,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 // Threads Routes
 Route::get('threads', 'ThreadsController@index')->name('threads.index');
 Route::get('threads/create', 'ThreadsController@create')->name('threads.create')->middleware('must-be-confirmed');
-Route::get('threads/search', 'SearchController@show')->name('threads.search');
 Route::post('threads', 'ThreadsController@store')->name('threads.store')->middleware('must-be-confirmed');
 Route::get('threads/{channel}/{thread}', 'ThreadsController@show')->name('threads.show');
 Route::post('threads/{thread}/lock', 'LockedThreadsController@store')->name('threads.lock.store')->middleware('admin');
@@ -51,3 +50,13 @@ Route::get('api/users', 'Api\UsersController@index');
 Route::get('/register/confirm', 'Auth\RegisterConfirmationController@index')->name('register.confirm');
 Route::post('api/users/{user}/avatar', 'Api\UsersAvatarController@store')->name('avatar.upload')->middleware('auth');
 
+Route::middleware('admin')
+    ->prefix('admin')
+    ->name('admin.')
+    ->namespace('Admin')
+    ->group(function () {
+        Route::view('/', 'admin.dashboard.index')->name('dashboard.index');
+        Route::post('/channels', 'ChannelsController@store')->name('channels.store');
+        Route::get('/channels', 'ChannelsController@index')->name('channels.index');
+        Route::get('/channels/create', 'ChannelsController@create')->name('channels.create');
+    });

@@ -32,12 +32,12 @@ $factory->state(App\User::class, 'unconfirmed', function ()
     ];
 });
 
-$factory->state(App\User::class, 'administrator', function ()
-{
-    return [
-        'type' => 'admin',
-    ];
-});
+// $factory->state(App\User::class, 'administrator', function ()
+// {
+//     return [
+//         'type' => 'admin',
+//     ];
+// });
 
 $factory->define(App\Thread::class, function (Faker $faker)
 {
@@ -82,6 +82,7 @@ $factory->define(App\Channel::class, function (Faker $faker)
     return [
         'name' => $name, // Server Admin
         'slug' => str_slug($name),
+        'description' => $faker->paragraph
     ];
 });
 

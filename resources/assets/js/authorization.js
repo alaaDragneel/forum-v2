@@ -5,6 +5,6 @@ module.exports = {
         return model[prop] === user.id;
     },
     isAdmin() {
-        return user.type === 'admin';
+        return user.isAdmin;
     }
 };

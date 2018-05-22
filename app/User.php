@@ -28,8 +28,22 @@ class User extends Authenticatable
         'password', 'remember_token', 'email',
     ];
 
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
     protected $casts = [
         'confirmed' => 'boolean',
+    ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'isAdmin'
     ];
 
     /**
@@ -64,11 +78,25 @@ class User extends Authenticatable
         $this->save();
     }
 
+    /**
+     * Determine if the user is an administrator.
+     *
+     * @return bool
+     */
     public function isAdmin ()
     {
-        return $this->type === 'admin';
+        return in_array($this->email, config('forum-v2.administrators'));
     }
-
+    
+    /**
+     * Determine if the user is an administrator.
+     *
+     * @return bool
+     */
+    public function getIsAdminAttribute()
+    {
+        return $this->isAdmin();
+    }
 
     public function read ($thread)
     {
