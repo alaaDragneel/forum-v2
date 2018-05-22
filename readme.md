@@ -6,43 +6,25 @@ This is the version v2 of my forum
 
 ### Step 1.
 
-> To run thiss project you must have PHP 7 installed as a prerequisite.
+> To run this project you must have PHP 7 installed as a prerequisite.
 
-> This project using ide helper package so 2 files will be added after install composer dependecies you are free to add them in `.gitignore` file.
+> This project using ide helper package so 2 files will be added after install composer dependencies you are free to add them in `.gitignore` file.
+> If you want use Redis as your cache driver you need to install the Redis Server. You can either use homebrew on a Mac or compile from source (https://redis.io/topics/quickstart). 
+
 
 Begin by cloning this repository to your machine, and  install all composer dependencies.
 
 ```bash
 git clone https://github.com/alaaDragneel/forum-v2.git
-cd "forum-v2" && composer install
-mv .env.example .env
-php artisan key:generate
+cd "forum-v2" && composer install && npm install
+php artisan forumV2:install
+npm run dev
 ```
 
-### Step 2.
+### Step 2
 
-Next, create a new database and update the `.env` file with username/pasword and database name, See example below.
+Next, start the server and visit your forum. If using a tool like Laravel Valet, of course the URL will default to `http://forum-v2.test`. 
 
-```
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=forum-v2
-DB_USERNAME=root
-DB_PASSWORD=
-```
-Then, run the migration
-
-```
-php artisan migrate
-```
-
-### Step 3.
-Create any number of channels, Then clean your cache.
-
-```bash
-php artisan cache:clear
-```
-
-### Step 4.
-Use your forum! Visit http://forum-v2.test/threads to create new account and publish your first thread :).
+1. Visit: `http://forum-v2.test/register` to register a new forum account.
+2. Edit: `config/forum-v2.php`, and add any email address that should be for an administrator.
+3. Visit: `http://forum-v2.test/admin/channels` to create channels for your forum.
