@@ -9,13 +9,13 @@ class Reputation
     const BEST_REPLY_AWARDED = 50;
     const REPLY_FAVORITED = 5;
 
-    public static function award(User $user, $points)
+    public static function award($user, $points)
     {
-        $user->increment('reputation', $points);       
+        ! $user ?: $user->increment('reputation', $points);       
     }
 
-    public static function revoking(User $user, $points)
+    public static function revoking($user, $points)
     {
-        $user->decrement('reputation', $points);
+       ! $user ?: $user->decrement('reputation', $points);
     }
 }
