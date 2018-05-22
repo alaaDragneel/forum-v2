@@ -32,7 +32,7 @@ class Recaptcha implements Rule
             'response' => $value,
             'remoteip' => request()->ip(),
         ]);
-
+    
         return $response->json()['success'];
     }
 
