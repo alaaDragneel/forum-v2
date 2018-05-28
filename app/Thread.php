@@ -13,7 +13,10 @@ class Thread extends Model
     protected $guarded = [];
     protected $with = [ 'owner', 'channel' ];
     protected $appends = [ 'isSubscribedTo' ];
-    protected $casts = [ 'locked' => 'boolean' ];
+    protected $casts = [ 
+        'locked' => 'boolean',
+        'pinned' => 'boolean'
+    ];
 
     protected static function boot ()
     {

@@ -27,6 +27,8 @@ Route::post('threads', 'ThreadsController@store')->name('threads.store')->middle
 Route::get('threads/{channel}/{thread}', 'ThreadsController@show')->name('threads.show');
 Route::post('threads/{thread}/lock', 'LockedThreadsController@store')->name('threads.lock.store')->middleware('admin');
 Route::delete('threads/{thread}/lock', 'LockedThreadsController@destroy')->name('threads.lock.destroy')->middleware('admin');
+Route::post('threads/{thread}/pin', 'PinnedThreadsController@store')->name('threads.pin.store')->middleware('admin');
+Route::delete('threads/{thread}/pin', 'PinnedThreadsController@destroy')->name('threads.pin.destroy')->middleware('admin');
 Route::patch('threads/{channel}/{thread}', 'ThreadsController@update')->name('threads.update');
 Route::delete('threads/{channel}/{thread}', 'ThreadsController@destroy')->name('threads.destroy');
 Route::get('threads/{channel}', 'ThreadsController@index')->name('threads.channels'); // must be down here
