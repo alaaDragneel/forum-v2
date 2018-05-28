@@ -1,8 +1,10 @@
 <script>
+    import Highlight from '../components/Highlight.vue';
 	export default {
 		props: [ 'thread' ],
 		components: {
 			Replies,
+            Highlight,
 			SubscribeButton
 		},
 		data () {

@@ -2,7 +2,7 @@
     <div>
         <div v-if="signedIn">
             <div class="form-group">
-                <textarea name="body" v-model="body" placeholder="Have Something To Say ?" id="body" class="form-control" rows="5"></textarea>
+               <wysiwyg v-model="body"></wysiwyg>
             </div>
             <button class="btn btn-success" @click="addReply" :disabled="disabled" v-text="state">Post</button>
         </div>
@@ -20,7 +20,6 @@
 <script>
 	import 'at.js';
 	import 'jquery.caret';
-
 	export default {
 		data () {
 			return {

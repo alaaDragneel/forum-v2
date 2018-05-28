@@ -27,7 +27,9 @@
                     <button class="btn btn-link btn-xs" @click="editing = false" type="button">Cancel</button>
                 </form>
             </div>
-            <div v-else v-html="body"></div>
+            <div v-else >
+				<highlight :content="body"></highlight>
+			</div>
         </div>
 
         <div class="panel-footer level" v-if="authorize('owns', reply) || authorize('owns', reply.thread)">
@@ -47,10 +49,10 @@
 <script>
 	import Favorite from './Favorite.vue';
 	import moment from 'moment';
-
+	import Highlight from './Highlight.vue';
 	export default {
 		props: [ 'reply' ],
-		components: { Favorite },
+		components: { Favorite, Highlight },
 		data () {
 			return {
 				editing: false,
