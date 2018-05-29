@@ -1,7 +1,7 @@
 @component('profiles.activities.activity')
     @slot('heading')
         <a href="{{ route('profiles.show', ['profileUser' => $activity->subject->owner]) }}"> {{ $activity->subject->owner->name }} </a> Reply To
-        <a href="{{ $activity->subject->thread->path() }}">
+        <a href="{{ $activity->subject->path() }}">
             "{{ $activity->subject->thread->title }}"
         </a>
     @endslot
