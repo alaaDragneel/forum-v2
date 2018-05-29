@@ -114,7 +114,7 @@ class ParticipateInForumTest extends TestCase
         ]);
 
         $this->post($thread->path() . '/replies', $reply->toArray())
-            ->assertStatus(200);
+            ->assertStatus(201);
 
         $this->post($thread->path() . '/replies', $reply->toArray())
             ->assertStatus(429);
