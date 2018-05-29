@@ -4,8 +4,6 @@ namespace App\Providers;
 
 use App\Channel;
 use Illuminate\Support\ServiceProvider;
-use View;
-
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,10 +19,10 @@ class AppServiceProvider extends ServiceProvider
             View::share('channels', Channel::all()); // share but will execute before the page load and the test will fail 
             instead use View::composer('*', function ($view) {}); 
         */
-        View::composer('*', function ($view)
+        view()->composer('*', function ($view)
         {
-            $channels = \Cache::rememberForever('channels', function () {
-                return Channel::all();
+            $channels = cache()->rememberForever('channels', function () {
+                return Channel::where('archived', false)->orderBy('name', 'DESC')->get();
             });
             
             $view->with('channels', $channels);

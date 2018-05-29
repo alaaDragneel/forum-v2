@@ -16,9 +16,8 @@ class ChannelsController extends Controller
 
     public function index()
     {
-        $channels = Channel::withCount('threads')->get();
-        
-        return view('admin.channels.index', ['channels' => $channels]);
+        $adminChannels = Channel::withCount('threads')->get();
+        return view('admin.channels.index', ['adminChannels' => $adminChannels]);
     }
 
     /**
@@ -53,5 +52,25 @@ class ChannelsController extends Controller
         
         return redirect(route('admin.channels.index'))
             ->with('flash', 'Your channel has been created!');
+    }
+
+    public function archive(Channel $channel)
+    {
+        $channel->archived();
+
+        cache()->forget('channels');
+
+        return redirect(route('admin.channels.index'))
+            ->with('flash', 'Channel has been archived!');
+    }
+
+    public function active(Channel $channel)
+    {
+        $channel->active();
+
+        cache()->forget('channels');
+
+        return redirect(route('admin.channels.index'))
+            ->with('flash', 'Channel has been active!');
     }
 }

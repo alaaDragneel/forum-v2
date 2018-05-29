@@ -61,4 +61,6 @@ Route::middleware('admin')
         Route::post('/channels', 'ChannelsController@store')->name('channels.store');
         Route::get('/channels', 'ChannelsController@index')->name('channels.index');
         Route::get('/channels/create', 'ChannelsController@create')->name('channels.create');
+        Route::patch('/channels/archive/{channel}', 'ChannelsController@archive')->name('channels.archive');
+        Route::patch('/channels/active/{channel}', 'ChannelsController@active')->name('channels.active');
     });

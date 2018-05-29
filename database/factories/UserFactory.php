@@ -82,6 +82,7 @@ $factory->define(App\Channel::class, function (Faker $faker)
     return [
         'name' => $name, // Server Admin
         'slug' => str_slug($name),
+        'archived' => false,
         'description' => $faker->paragraph
     ];
 });

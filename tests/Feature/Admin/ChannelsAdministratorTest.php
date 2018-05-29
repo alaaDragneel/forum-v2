@@ -5,6 +5,7 @@ namespace Tests\Feature\Admin;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Symfony\Component\HttpFoundation\Response;
+use Psy\CodeCleaner\AssignThisVariablePass;
 
 class ChannelsAdministratorTest extends TestCase
 {
@@ -47,6 +48,37 @@ class ChannelsAdministratorTest extends TestCase
         $this->get($response->headers->get('Location'))
             ->assertSee('php')
             ->assertSee('This Channel Has A Description');
+    }
+
+    /** @test */
+    public function non_administrator_can_archive_channel()
+    {
+        $channel = create('App\Channel');
+        $this->patch(route('admin.channels.archive', $channel))->assertStatus(Response::HTTP_FORBIDDEN);
+    }
+    
+    /** @test */
+    public function an_administrator_can_archive_channel()
+    {
+        $this->signInAsAdmin();
+
+        $channel = create('App\Channel');
+
+        $this->patch(route('admin.channels.archive', $channel));
+
+        $this->assertTrue($channel->fresh()->archived);
+    }
+
+    /** @test */
+    public function an_administrator_can_active_channel()
+    {
+        $this->signInAsAdmin();
+
+        $channel = create('App\Channel', ['archived' => true]);
+
+        $this->patch(route('admin.channels.active', $channel));
+
+        $this->assertFalse($channel->fresh()->archived);
     }
 
     /** @test */
